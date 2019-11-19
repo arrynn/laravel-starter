@@ -1,0 +1,14 @@
+version: '3.2'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./docker/dev/backend/Dockerfile
+    volumes:
+      - ".:/var/www/html:cached"
+    ports:
+      - "9000:9000"
+    networks:
+      - "internal"
+networks:
+  internal:
