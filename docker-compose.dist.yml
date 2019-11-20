@@ -3,24 +3,16 @@ services:
   backend:
     build:
       context: .
-      dockerfile: ./docker/dev/backend/Dockerfile
-    volumes:
-      - ".:/var/www/html:cached"
-      - "/var/www/html/vendor"
+      dockerfile: ./docker/dist/backend/Dockerfile
     ports:
       - "9000:9000"
     networks:
       - "internal"
-    environment:
-      - PHP_IDE_CONFIG=serverName=dockerDbg
   nginx:
     build:
       context: .
-      dockerfile: ./docker/dev/nginx/Dockerfile
+      dockerfile: ./docker/dist/nginx/Dockerfile
     restart: always
-    volumes:
-      - ".:/var/www/html:ro"
-      - "/var/www/html/vendor"
     depends_on:
       - "backend"
     links:
